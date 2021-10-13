@@ -1,0 +1,35 @@
+.cards {
+    display: flex;
+    flex-direction: column;
+}
+
+.picture {
+    width: 48%;
+}
+
+.cardItem {
+    clear: both;
+    border-bottom: 1px solid #dadada;;
+    padding: 2rem;
+    height: 10rem;
+}
+.cardItem:nth-child(odd) div.text {
+    float: right;
+  }
+.cardItem:nth-child(odd) div.picture {
+    float: left;
+  }
+.cardItem:nth-child(even) div.text {
+    float: left;
+  }
+.cardItem:nth-child(even) div.picture {
+    float: right;
+  }
+
+.text {
+    max-width: 48%;
+    height: 20rem;
+    p {
+        margin-top: 0;
+    }
+}
