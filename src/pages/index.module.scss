@@ -4,31 +4,34 @@
 }
 
 .picture {
-    width: 48%;
+    width: 50%;
+    overflow: hidden;
+
 }
 
 .cardItem {
     clear: both;
     border-bottom: 1px solid #dadada;;
-    padding: 2rem;
-    height: 10rem;
+    padding: 1.5vw;
+    display: flex;
+    justify-content: space-between;
+    height: 200px;
 }
-.cardItem:nth-child(odd) div.text {
-    float: right;
-  }
-.cardItem:nth-child(odd) div.picture {
-    float: left;
-  }
-.cardItem:nth-child(even) div.text {
-    float: left;
-  }
-.cardItem:nth-child(even) div.picture {
-    float: right;
-  }
+.cardItem:nth-child(odd) {
+    flex-direction: row;
+    .text {
+        padding-left: 3vw;
+    }
+}
+.cardItem:nth-child(even) {
+    flex-direction: row-reverse;
+    .text {
+        padding-right: 3vw;
+    }
+}
 
 .text {
-    max-width: 48%;
-    height: 20rem;
+    width: 50%;
     p {
         margin-top: 0;
     }
