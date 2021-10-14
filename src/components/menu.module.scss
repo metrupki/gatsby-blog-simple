@@ -1,0 +1,30 @@
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30vw;
+    height: 100%;
+    background: white;
+    overflow: scroll;
+    transform: translateX(-100%);
+    transition: all 0.5s ease;
+    padding: 2vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;    
+}
+
+.activeMenu {
+    transform: translateX(0%);
+    opacity: 0.8;
+    box-shadow: 2px 2px 20px gray;
+}
+
+.button {
+    background: transparent;
+    border: none;
+    margin-top: auto;
+    padding-bottom: 3rem;
+    cursor: pointer;
+}
