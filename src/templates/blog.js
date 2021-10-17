@@ -57,14 +57,9 @@ const Blog = (props) => {
               const imageData = richTextImages[node.data.target.sys.id];
               const image = getImage(imageData.image)
               return (
-                <>
-                  <h2>Embedded Asset</h2>
-                  <pre>
-                    <code>{JSON.stringify(node, null, 2)}</code>
-                  </pre>
+                <div>
                   <GatsbyImage image={image} alt={imageData.alt}/>
-                </>
-                
+                </div>
               )
             },
           },

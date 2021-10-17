@@ -1,9 +1,9 @@
-import { StaticImage } from "gatsby-plugin-image"
 import * as React from "react"
 import Layout from "../components/Layout"
 import * as blogStyle from "./index.module.scss"
-import { graphql, useStaticQuery, Link } from "gatsby";
-import { Card, Heading } from 'rebass'
+import { graphql, useStaticQuery, Link } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { v4 as uuidv4 } from 'uuid'
 
 const IndexPage = () => {
 
@@ -15,6 +15,16 @@ const IndexPage = () => {
           title
           slug
           publishedDate(formatString: "MMMM Do, YYYY")
+          shortDescription
+          titleImage {
+            gatsbyImageData(
+              layout: CONSTRAINED
+              quality: 80
+              formats: [WEBP, AUTO]
+              placeholder: BLURRED
+            )
+            title
+          }
         }
       }
     }
@@ -25,50 +35,19 @@ const IndexPage = () => {
     <Layout>
         <div className={blogStyle.cards}>
           {data.allContentfulBlogPost.edges.map(edge => 
-              <div className={blogStyle.cardItem}>
-                  <div className={blogStyle.text}>
-                    <Link to={`/blog/${edge.node.slug}`}>
-                      <h1>{edge.node.title}</h1>
-                      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fungit blanditiis quia accusamus harum molestiae voluptate soluta.</p>
-                      <p>{edge.node.publishedDate}</p>
+              <div className={blogStyle.cardItem} key={uuidv4()}>
+                  <div className={blogStyle.text} key={uuidv4()}>
+                    <Link to={`/blog/${edge.node.slug}`} key={uuidv4()}>
+                      <h1 key={uuidv4()}>{edge.node.title}</h1>
+                      <p key={uuidv4()}>{edge.node.shortDescription}</p>
+                      <p key={uuidv4()}>{edge.node.publishedDate}</p>
                     </Link>
                   </div>
-                  <div className={blogStyle.picture}>
-                    <Link to={`/blog/${edge.node.slug}`}>
-                      <StaticImage src="../images/photo1.jpg" />
+                    <Link to={`/blog/${edge.node.slug}`} key={uuidv4()}>
+                      <GatsbyImage className={blogStyle.picture} image={getImage(edge.node.titleImage.gatsbyImageData)} alt={edge.node.titleImage.title} key={uuidv4()} />
                     </Link>
-                  </div>
               </div>
           )}
-          <div className={blogStyle.cardItem}>
-            <div className={blogStyle.text}>
-              <h1>This is the title of this</h1>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fungit blanditiis quia accusamus harum molestiae voluptate soluta.</p>
-            </div>
-            <div className={blogStyle.picture}>
-              <StaticImage src="../images/photo1.jpg" />
-            </div>
-          </div>
-
-          <div className={blogStyle.cardItem}>
-            <div className={blogStyle.text}>
-              <h1>This is the title of this</h1>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fungit blanditiis quia accusamus harum molestiae voluptate soluta.</p>
-            </div>
-            <div className={blogStyle.picture}>
-              <StaticImage src="../images/gaming.png" />
-            </div>
-          </div>
-
-          <div className={blogStyle.cardItem}>
-            <div className={blogStyle.text}>
-              <h1>This is the title of this</h1>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fungit blanditiis quia accusamus harum molestiae voluptate soluta.</p>
-            </div>
-            <div className={blogStyle.picture}>
-              <StaticImage src="../images/food.png" />
-            </div>
-          </div>
         </div>
     </Layout>
   )
