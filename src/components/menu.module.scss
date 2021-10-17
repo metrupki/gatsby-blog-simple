@@ -2,22 +2,26 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 30vw;
-    height: 100%;
-    background: white;
+    width: 15vw;
+    height: 100vh;
     overflow: scroll;
     transform: translateX(-100%);
     transition: all 0.5s ease;
     padding: 2vh;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    text-align: center;    
+    text-align: center;
+    background-color: papayawhip;
+    @media (max-width: 1000px) {
+        width: 30vw;
+    }
+    @media (max-width: 800px) {
+        width: 100vw;
+    }
 }
 
 .activeMenu {
     transform: translateX(0%);
-    opacity: 0.8;
     box-shadow: 2px 2px 20px gray;
 }
 

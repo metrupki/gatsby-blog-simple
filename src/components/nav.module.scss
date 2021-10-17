@@ -3,7 +3,10 @@
     direction: rtl;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 3px solid #dadada;
+    border-bottom: 3px solid #6f7380;
+    a {
+        color: black;
+    }
 }
 
 .activeBurger {

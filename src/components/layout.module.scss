@@ -1,12 +1,16 @@
 .container {
-    max-width: 80%;
+    max-width: 80vw;
     margin: 0 auto;
-    padding-top: 2%;
+    padding-top: 2vh;
 }
 
 .content {
     max-width: 70%;
     margin: 0 auto;
-    padding-top: 2%;
+    padding-top: 2vh;
     direction: rtl;
+}
+
+.Link {
+    text-decoration: none;
 }

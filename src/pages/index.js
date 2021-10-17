@@ -1,42 +1,53 @@
-import { StaticImage } from "gatsby-plugin-image"
 import * as React from "react"
 import Layout from "../components/Layout"
 import * as blogStyle from "./index.module.scss"
-import { Card, Heading } from 'rebass'
+import { graphql, useStaticQuery, Link } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { v4 as uuidv4 } from 'uuid'
 
 const IndexPage = () => {
+
+  const data = useStaticQuery(graphql`
+  query {
+    allContentfulBlogPost(sort: {fields: publishedDate, order: DESC}) {
+      edges {
+        node {
+          title
+          slug
+          publishedDate(formatString: "MMMM Do, YYYY")
+          shortDescription
+          titleImage {
+            gatsbyImageData(
+              layout: CONSTRAINED
+              quality: 80
+              formats: [WEBP, AUTO]
+              placeholder: BLURRED
+            )
+            title
+          }
+        }
+      }
+    }
+  }
+  `)
+
   return (
     <Layout>
         <div className={blogStyle.cards}>
-
-          <div className={blogStyle.cardItem}>
-            <div className={blogStyle.text}>
-              <h1>This is the title of this</h1>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fungit blanditiis quia accusamus harum molestiae voluptate soluta.</p>
-            </div>
-            <div className={blogStyle.picture}>
-              <StaticImage src="../images/photo1.jpg" />
-            </div>
-          </div>
-          <div className={blogStyle.cardItem}>
-            <div className={blogStyle.text}>
-              <h1>This is the title of this</h1>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fungit blanditiis quia accusamus harum molestiae voluptate soluta.</p>
-            </div>
-            <div className={blogStyle.picture}>
-              <StaticImage src="../images/gaming.png" />
-            </div>
-          </div>
-
-          <div className={blogStyle.cardItem}>
-            <div className={blogStyle.text}>
-              <h1>This is the title of this</h1>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fungit blanditiis quia accusamus harum molestiae voluptate soluta.</p>
-            </div>
-            <div className={blogStyle.picture}>
-              <StaticImage src="../images/food.png" />
-            </div>
-          </div>
+          {data.allContentfulBlogPost.edges.map(edge => 
+              <div className={blogStyle.cardItem} key={uuidv4()}>
+                  <div className={blogStyle.text} key={uuidv4()}>
+                    <Link to={`/blog/${edge.node.slug}`} key={uuidv4()}>
+                      <h1 key={uuidv4()}>{edge.node.title}</h1>
+                      <p key={uuidv4()}>{edge.node.shortDescription}</p>
+                      <p key={uuidv4()}>{edge.node.publishedDate}</p>
+                    </Link>
+                  </div>
+                    <Link to={`/blog/${edge.node.slug}`} key={uuidv4()}>
+                      <GatsbyImage className={blogStyle.picture} image={getImage(edge.node.titleImage.gatsbyImageData)} alt={edge.node.titleImage.title} key={uuidv4()} />
+                    </Link>
+              </div>
+          )}
         </div>
     </Layout>
   )
