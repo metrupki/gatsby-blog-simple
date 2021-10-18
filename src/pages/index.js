@@ -40,12 +40,13 @@ const IndexPage = () => {
                     <Link to={`/blog/${edge.node.slug}`} key={uuidv4()}>
                       <h1 key={uuidv4()}>{edge.node.title}</h1>
                       <p key={uuidv4()}>{edge.node.shortDescription}</p>
-                      <p key={uuidv4()}>{edge.node.publishedDate}</p>
                     </Link>
                   </div>
+                  <div className={blogStyle.picture}>
                     <Link to={`/blog/${edge.node.slug}`} key={uuidv4()}>
-                      <GatsbyImage className={blogStyle.picture} image={getImage(edge.node.titleImage.gatsbyImageData)} alt={edge.node.titleImage.title} key={uuidv4()} />
+                      <GatsbyImage className={blogStyle.actualPicture} image={getImage(edge.node.titleImage.gatsbyImageData)} alt={edge.node.titleImage.title} key={uuidv4()} />
                     </Link>
+                  </div>
               </div>
           )}
         </div>
