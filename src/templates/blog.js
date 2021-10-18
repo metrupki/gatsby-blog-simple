@@ -68,6 +68,7 @@ const Blog = (props) => {
     return (
         <Layout>
             <div>
+                <h1>{props.data.contentfulBlogPost.title}</h1>
                 {documentToReactComponents(JSON.parse(props.data.contentfulBlogPost.body.raw), options)}
             </div>
         </Layout>
