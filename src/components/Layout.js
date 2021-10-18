@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Nav from './Nav'
 import * as layoutStyles from './layout.module.scss'
 import '../styles/global.scss'
+import "@fontsource/amiri";
 import Menu from './Menu'
 
 const Layout = (props) => {
