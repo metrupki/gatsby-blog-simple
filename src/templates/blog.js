@@ -58,7 +58,7 @@ const Blog = (props) => {
               const image = getImage(imageData.image)
               return (
                 <div>
-                  <GatsbyImage className={picture} image={image} alt={imageData.alt}/>
+                  <GatsbyImage image={image} alt={imageData.alt}/>
                 </div>
               )
             },
