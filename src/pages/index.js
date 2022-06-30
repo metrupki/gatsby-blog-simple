@@ -34,7 +34,7 @@ const IndexPage = () => {
   return (
     <Layout>
         <div className={blogStyle.cards}>
-          {data.allContentfulBlogPost.edges.map(edge => 
+          {data.allContentfulBlogPost.edges.map(edge =>
               <div className={blogStyle.cardItem} key={uuidv4()}>
                   <div className={blogStyle.text} key={uuidv4()}>
                     <Link to={`/blog/${edge.node.slug}`} key={uuidv4()}>

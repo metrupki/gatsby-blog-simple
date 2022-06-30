@@ -4,6 +4,8 @@ import { graphql } from 'gatsby'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import * as blogPostStyle from "./blog.module.scss"
+
 
 
 export const query = graphql`
@@ -31,7 +33,7 @@ export const query = graphql`
             }
         }
         }
-    }  
+    }
     `
 
 const Blog = (props) => {
@@ -43,7 +45,7 @@ const Blog = (props) => {
             "image": reference.gatsbyImageData, "alt": reference.title
         }
     ))
-    
+
     const Bold = ({ children }) => <span className="bold">{children}</span>
     const Text = ({ children }) => <p className="align-center">{children}</p>
 
@@ -67,7 +69,7 @@ const Blog = (props) => {
 
     return (
         <Layout>
-            <div>
+            <div className={blogPostStyle.wrapper}>
                 <h1>{props.data.contentfulBlogPost.title}</h1>
                 {documentToReactComponents(JSON.parse(props.data.contentfulBlogPost.body.raw), options)}
             </div>
