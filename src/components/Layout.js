@@ -13,7 +13,7 @@ const Layout = (props) => {
         <div>
             <div className={layoutStyles.container}>
                 <Nav menuStatus={menuStatus} setmenuStatus={setmenuStatus} />
-                    <div className={layoutStyles.content}>
+                    <div>
                     {props.children}
                     </div>
             </div>
