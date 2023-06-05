@@ -4,7 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
+    siteUrl: "https://lena-writes.netlify.app/",
     title: "gatsby-blog-lena",
   },
   plugins: [

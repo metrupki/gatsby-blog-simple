@@ -8,27 +8,27 @@ import { v4 as uuidv4 } from 'uuid'
 const IndexPage = () => {
 
   const data = useStaticQuery(graphql`
-  query {
-    allContentfulBlogPost(sort: {fields: publishedDate, order: DESC}) {
-      edges {
-        node {
-          title
-          slug
-          publishedDate(formatString: "MMMM Do, YYYY")
-          shortDescription
-          titleImage {
-            gatsbyImageData(
-              layout: CONSTRAINED
-              quality: 80
-              formats: [WEBP, AUTO]
-              placeholder: BLURRED
-            )
+    query {
+      allContentfulBlogPost(sort: {publishedDate: DESC}) {
+        edges {
+          node {
             title
+            slug
+            publishedDate(formatString: "MMMM Do, YYYY")
+            shortDescription
+            titleImage {
+              gatsbyImageData(
+                layout: CONSTRAINED
+                quality: 80
+                formats: [WEBP, AUTO]
+                placeholder: BLURRED
+              )
+              title
+            }
           }
         }
       }
     }
-  }
   `)
 
   return (
